@@ -1,17 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import App from '/Users/lukemoliterno/Desktop/React/tentativa/src/App.js';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import New from './NewPage/New';
+import Btc from './btc_api/Btc';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <Router>
+    <div>
+          <Switch>
+              <Route exact path="/">
+                  <App />
+              </Route>
+              <Route path="/wiki">
+                  <New />
+              </Route>
+              <Route path="/btc">
+                <Btc />
+              </Route>
+          </Switch>
+    </div>
+  </Router>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

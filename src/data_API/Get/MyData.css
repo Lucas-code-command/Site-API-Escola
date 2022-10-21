@@ -1,0 +1,14 @@
+.principal_get{
+    margin:0px 2%;
+    margin-block-end: 10px;
+    margin-block-start: 10PX;
+    border: 10px black solid;
+}
+
+h2{
+    margin-left: 2%;
+}
+
+li{
+    margin-left: 3%;
+}

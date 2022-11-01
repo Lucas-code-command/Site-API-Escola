@@ -4,6 +4,8 @@ import App from '/Users/lukemoliterno/Desktop/React/tentativa/src/App.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import New from './NewPage/New';
 import Btc from './btc_api/Btc';
+import Data_F1 from './btc_api/f1';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 

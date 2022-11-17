@@ -5,29 +5,22 @@ const PORT = 5050
 
 const app = express()
 
-const url = "https://www.theguardian.com/international"
-axios(url)
-    .then(response => {
-        const html = response.data
-        const $ = cheerio.load(html)
-        const articles = []
+app.use((req,res,next)=> {
+    res.header("Access-Control-Allow-Origin",'*'),
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    req.header("Access-Control-Allow-Headers","Origin , X-Requested-With , Content-Type, Accept"),
+    next()
+})
 
-        $('.fc-item__title',html).each(function(){
-                const title = $(this).text()
-                const linked = $(this).find('a').attr('href')
-                articles.push({
-                    title,
-                    linked
-                })
-        })
-    })
-
+app.get('/manual', (req,res)=> {
+    res.json("Hello half correct")
+})
    
-app.get('/', (req, res) => {
+app.get('/news', (req, res) => {
     const url = "https://www.theguardian.com/international"
-    axios(url)
-        .then(res => {
-            const html = res.data
+    axios.get(url)
+        .then((response) => {
+            const html = response.data
             const $ = cheerio.load(html)
             const articles = []
 
@@ -39,7 +32,9 @@ app.get('/', (req, res) => {
                         linked
                     })
             })
-        })
+            console.log(articles)
+            res.json(articles)
+        }).catch((err)=> console.log(err))
 })
 
 app.listen(PORT, ()=> console.log(`Server is listening on port ${PORT}`))

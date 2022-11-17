@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "web.js",
   "scripts": {
-    "dev": "nodemon web.js"
+    "dev": "nodemon web.js",
+    "start": "npm start Webfront.js"
   },
   "author": "",
   "license": "ISC",

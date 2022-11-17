@@ -4,7 +4,8 @@ import App from '/Users/lukemoliterno/Desktop/React/tentativa/src/App.js';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import New from './NewPage/New';
 import Btc from './btc_api/Btc';
-import Data_F1 from './btc_api/f1';
+import Webfront from './Web_scraping/Webfront';
+
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,6 +22,9 @@ root.render(
               </Route>
               <Route path="/btc">
                 <Btc />
+              </Route>
+              <Route>
+                 <Webfront path="/webfront"/>
               </Route>
           </Switch>
     </div>

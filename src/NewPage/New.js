@@ -16,7 +16,7 @@ app.get('/',(req, res)=>{
 })
 
 app.get('/nba/times', (req, res)=>{
-    const url = 'https://www.espn.com.br/nba/classificacao'
+    const url = 'http://localhost:5050/nba/times'
     axios.get(url)
         .then((response)=>{
             const html = response.data

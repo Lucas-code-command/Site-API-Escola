@@ -37,4 +37,22 @@ app.get('/news', (req, res) => {
         }).catch((err)=> console.log(err))
 })
 
+app.get('/nba/times', (req, res)=>{
+    const url = 'https://www.espn.com.br/nba/classificacao'
+    axios.get(url)
+        .then((response)=>{
+            const html = response.data
+            const $ = cheerio.load(html)
+            const standings = []
+            $('.hide-mobile',html).each(function(){
+                const name = $(this).text().trim()
+                standings.push({
+                    name
+                })
+            })
+            console.log(standings)
+            res.json(standings)
+        }).catch((err)=> console.log(err))
+    })
+
 app.listen(PORT, ()=> console.log(`Server is listening on port ${PORT}`))

@@ -47,11 +47,8 @@ return(
       <MyData />
       <ul>
         <h2>Api Disponíveis:</h2>
-        <li><Link to ="/wiki"> Wiki API</Link> </li>
         <li><Link to="/btc"> BTC API</Link></li>
-        <li><Link to="/formula1">Formula1</Link></li>
         <li><Link to='/webfront'>The gardian API</Link></li>
-        <li><Link to='/newfront'> new front</Link></li>
       </ul>
     </div>
 );

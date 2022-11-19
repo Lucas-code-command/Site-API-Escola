@@ -16,7 +16,7 @@ app.get('/',(req, res)=>{
 })
 
 app.get('/nba/times', (req, res)=>{
-    const url = 'http://localhost:5050/nba/times'
+    const url = 'https://www.espn.com.br/nba/classificacao'
     axios.get(url)
         .then((response)=>{
             const html = response.data
@@ -28,10 +28,28 @@ app.get('/nba/times', (req, res)=>{
                     name
                 })
             })
-            console.log(standings)
+            //console.log(standings)
             res.json(standings)
         }).catch((err)=> console.log(err))
     })
+
+app.get('/nba/pontos', (req,res)=>{
+    const url = 'https://www.espn.com.br/nba/classificacao'
+    axios.get(url)
+        .then((response)=> {
+            const html = response.data
+            const $ = cheerio.load(html)
+            const points = []
+            $('.stat-cell',html).each(function(){
+                const point = $(this).text()
+                points.push({
+                    point
+                })
+            })
+            //console.log(points)
+            res.json(points)
+        }).catch((err)=> console.log(err))
+})
 
 
 app.listen(port, console.log(`Server is listening on port ${port}`))

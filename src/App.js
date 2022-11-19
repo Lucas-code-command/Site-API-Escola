@@ -49,6 +49,7 @@ return(
         <h2>Api Disponíveis:</h2>
         <li><Link to="/btc"> BTC API</Link></li>
         <li><Link to='/webfront'>The gardian API</Link></li>
+        <li><Link to="/nova">Nova</Link></li>
       </ul>
     </div>
 );

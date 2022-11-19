@@ -4,28 +4,30 @@ const express = require('express')
 const port = 5051
 const app = express()
 
+app.use((req,res,next)=> {
+    res.header("Access-Control-Allow-Origin",'*'),
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+    req.header("Access-Control-Allow-Headers","Origin , X-Requested-With , Content-Type, Accept"),
+    next()
+})
+
 app.get('/',(req, res)=>{
     res.json('Working')
 })
 
-app.get('/nba', (req, res)=>{
-    const url = 'https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal'
+app.get('/nba/times', (req, res)=>{
+    const url = 'https://www.espn.com.br/nba/classificacao'
     axios.get(url)
         .then((response)=>{
             const html = response.data
             const $ = cheerio.load(html)
             const standings = []
-
-            $('.main-page-block-heading',html).each(function(){
-                const name = $(this).text()
-                const articles = $(this).find('.main-page-block-contents').text()
-
+            $('.hide-mobile',html).each(function(){
+                const name = $(this).text().trim()
                 standings.push({
-                    name,
-                    articles
+                    name
                 })
             })
-                
             console.log(standings)
             res.json(standings)
         }).catch((err)=> console.log(err))

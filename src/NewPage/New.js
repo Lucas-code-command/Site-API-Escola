@@ -8,29 +8,28 @@ app.get('/',(req, res)=>{
     res.json('Working')
 })
 
-app.get('/f1', (req, res)=>{
-    const url = 'https://www.formula1.com/en/results.html/2022/drivers.html'
+app.get('/nba', (req, res)=>{
+    const url = 'https://pt.wikipedia.org/wiki/Wikip%C3%A9dia:P%C3%A1gina_principal'
     axios.get(url)
         .then((response)=>{
             const html = response.data
             const $ = cheerio.load(html)
             const standings = []
 
-            $('tr',html).each(function(){
-                const posicao = $(this[10]).find('.dark').text()
-                const nome = $(this).find('.hide-for-tablet').text()
-                const sobrenome = $(this).find('.hide-for-mobile').text()
-                const pontuacao = $(this).find('.dark bold').text()
+            $('.main-page-block-heading',html).each(function(){
+                const name = $(this).text()
+                const articles = $(this).find('.main-page-block-contents').text()
+
                 standings.push({
-                    posicao,
-                    nome,
-                    sobrenome,
-                    pontuacao
+                    name,
+                    articles
                 })
             })
+                
             console.log(standings)
             res.json(standings)
         }).catch((err)=> console.log(err))
-})
+    })
+
 
 app.listen(port, console.log(`Server is listening on port ${port}`))

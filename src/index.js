@@ -24,7 +24,7 @@ root.render(
                  <Webfront path="/webfront"/>
               </Route>
               <Route>
-                <New_front path="/new"/>
+                <New_front path="/newfront"/>
               </Route>
           </Switch>
     </div>

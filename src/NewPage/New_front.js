@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import {Link} from 'react-router-dom';
 
 
 export default function New_front() {
@@ -23,11 +22,10 @@ export default function New_front() {
     return(
 
         <div>
+            <div>
+                <h1>worked??</h1>
+            </div>
             <h1>worked??</h1>
-            {error && (<div>{`there problem ${error}`}</div>)}
-            {data && data.map(({name})=>(
-                <h1>{name}</h1>
-            ))}
         </div>
     )
 
